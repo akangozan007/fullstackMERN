@@ -1,0 +1,34 @@
+GET http://localhost:5000/pengguna
+###
+
+GET http://localhost:5000/pengguna/67698a1403f71086127cbddf
+###
+
+POST http://localhost:5000/pengguna
+Content-Type: application/json
+
+{
+    "name":"nurazizah",
+    "email":"azizy@gmail.com",
+    "kelas":"INFORMATIKA B",
+    "telepon":"+6283844335253",
+    "gender":"perempuan"
+}
+
+###
+
+PATCH http://localhost:5000/pengguna/67698bd03399430b948d7a3c
+Content-Type: application/json
+
+{
+    "name":"nurazizah fikri",
+    "email":"aziz3y@gmail.com",
+    "kelas":"INFORMATIKA U",
+    "telepon":"+628123244444",
+    "gender":"banci"
+}
+
+###
+
+DELETE http://localhost:5000/pengguna/67698bd03399430b948d7a3c
+###
