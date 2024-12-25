@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from "react-router-dom";
+
 import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
@@ -20,10 +22,27 @@ function UserList() {
         }
     }
 
+    const hapusPengguna = async (id) =>{
+        try {
+            await axios.delete(`http://localhost:5000/pengguna/${id}`);
+            getPengguna();
+        } catch (error) {
+            
+        }
+    }
+
     return (
+      <>
         <div className='container mt-5'>
             <h1 className='text-center'>Data Siswa & Siswi</h1>
-            <div className='table-responsive'>
+            <div>
+            <Link to="tambahUser" className='btn btn-lg btn-primary'> 
+             Tambah User
+            </Link>
+            </div>
+            </div>
+            <br/>
+        <div className='table-responsive'>
             <table className='table table-dark table-striped table-hover'>
                 <thead>
                     <tr>
@@ -46,16 +65,23 @@ function UserList() {
                             <td>{user.telepon}</td>
                             <td>{user.gender}</td>
                             <td>
-                                <button className='btn btn-sm btn-primary'>Edit</button>
-                                <button className='btn btn-sm btn-danger'>Delete</button>
+                                <Link to={`EditUser/${user._id}`} className='btn btn-sm btn-primary'>Edit</Link>
+                                <button 
+                                onClick={
+                                    () => 
+                                        hapusPengguna(user._id)
+                                    } 
+                                className='btn btn-sm btn-danger'>Delete</button>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
             </div>
-        </div>
-    );
+
+  
+      </>       
+    )
 }
 
 export default UserList;
